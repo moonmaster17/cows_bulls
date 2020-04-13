@@ -7,27 +7,30 @@ def comparer(com, user):
     for i in range(len(com)):
         if user[i] == com[i]:
             cowbull[1] += 1
-            if guess > 4:
-                del x[i]
-                x.insert(i, user[i])
-
+            del x[i]
+            x.insert(i, user[i])
         elif user[i] in com:
             cowbull[0] += 1
     if guess > 4:
-        print('\n' + ''.join(map(str, x)))
+        print(''.join(map(str, x)))
     print(cowbull)
     return cowbull
 
 
 Game = True
 com = str(random.randint(1000, 9999))
-print(com)
 guess = 1
 
 while Game:
     user = input('give me a number\n')
+    if len(user) > len(com):
+        print('enter ' + str(len(com)) + ' digits number')
+        continue
+
     result = comparer(user, com)
-    if result[0] == 0 and result[1] == 0:
+    if not user.isdigit():
+        print('enter digits only')
+    elif result[0] == 0 and result[1] == 0:
         print("not in range either choose another number")
     elif user == com:
         print('wow u won in ' + str(guess) + ' tries')
