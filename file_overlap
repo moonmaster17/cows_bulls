@@ -1,0 +1,12 @@
+di = {}
+with open('happy_numbers.txt') as h:
+    hl = h.readline()   # reading only ONE line
+    with open('prime_numbers.txt') as p:
+        pl = p.readlines()  # reading ALL the list
+        while hl:
+            if hl in pl:
+                di[hl.strip()] = 1
+            else:
+                pass
+            hl = h.readline()
+print(di)
